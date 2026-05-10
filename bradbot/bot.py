@@ -8,7 +8,7 @@ from .agent import bradbot_chat
 load_dotenv("secrets/.env")
 
 DISCORD_TOKEN = os.getenv("BRADBOT_DISCORD_TOKEN")
-BRADBOT_CHANNEL_ID = int(os.getenv("BRADBOT_CHANNEL_ID", "0"))
+BRADBOT_CHANNEL_ID = int(os.getenv("BRADBOT_CHANNEL_ID") or "0")
 
 intents = discord.Intents.default()
 intents.message_content = True

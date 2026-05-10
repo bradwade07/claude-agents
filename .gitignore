@@ -30,6 +30,8 @@ node_modules/
 .DS_Store
 *.sqlite
 *.sqlite3
+*.db
+bradbot_memory.db
 .bradbot_session.json
 .claude/settings.local.json
 secrets/

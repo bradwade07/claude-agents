@@ -26,7 +26,7 @@ async def bradbot_chat(user_message: str) -> str:
     session_id = load_session_id()
 
     options = ClaudeAgentOptions(
-        model="claude-opus-4-7",
+        model="claude-haiku-4-5",
         system_prompt=SYSTEM_PROMPT,
         mcp_servers={
             "memory": memory_server,
