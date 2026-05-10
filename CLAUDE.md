@@ -42,7 +42,7 @@ Personal Discord AI assistant using the Claude Agent SDK. Bradbot handles:
 pip install -r requirements.txt
 
 # Setup
-cp .env.example .env  # Fill in secrets: DISCORD_TOKEN, ANTHROPIC_API_KEY, etc.
+edit secrets/.env  # Fill in secrets: BRADBOT_DISCORD_TOKEN, ANTHROPIC_API_KEY, etc.
 
 # Run bot
 python -m bradbot
@@ -55,10 +55,12 @@ python -m bradbot
 ## Environment Variables
 
 - `ANTHROPIC_API_KEY` — Claude API key
-- `DISCORD_TOKEN` — Bot token from Discord Developer Portal
+- `BRADBOT_DISCORD_TOKEN` — Bot token from Discord Developer Portal
 - `DISCORD_USER_ID` — Your numeric Discord user ID
 - `CLICKUP_API_KEY` — ClickUp API token
-- `GOOGLE_CALENDAR_CREDENTIALS` — Path to Google OAuth2 credentials.json (default: `credentials.json`)
+- `GOOGLE_CALENDAR_CREDENTIALS` — Path to Google OAuth2 credentials.json (default: `secrets/google/credentials.json`)
+
+All secrets live in `secrets/` directory (gitignored). Subdir `secrets/google/` holds OAuth2 `credentials.json` and auto-generated `token.json`.
 
 ## Testing
 

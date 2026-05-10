@@ -5,9 +5,9 @@ from dotenv import load_dotenv
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from .agent import bradbot_chat
 
-load_dotenv()
+load_dotenv("secrets/.env")
 
-DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+DISCORD_TOKEN = os.getenv("BRADBOT_DISCORD_TOKEN")
 BRAD_USER_ID = int(os.getenv("DISCORD_USER_ID", "0"))
 
 client = discord.Client(intents=discord.Intents.default())
@@ -58,7 +58,7 @@ async def morning_briefing():
 def run():
     """Start the bot."""
     if not DISCORD_TOKEN:
-        raise ValueError("DISCORD_TOKEN not set in .env")
+        raise ValueError("BRADBOT_DISCORD_TOKEN not set in secrets/.env")
     if BRAD_USER_ID == 0:
         raise ValueError("DISCORD_USER_ID not set in .env")
 

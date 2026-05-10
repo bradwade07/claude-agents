@@ -10,8 +10,8 @@ from google.auth.exceptions import RefreshError
 import googleapiclient.discovery
 
 SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"]
-CREDENTIALS_FILE = os.getenv("GOOGLE_CALENDAR_CREDENTIALS", "credentials.json")
-TOKEN_FILE = "token.json"
+CREDENTIALS_FILE = os.getenv("GOOGLE_CALENDAR_CREDENTIALS", "secrets/google/credentials.json")
+TOKEN_FILE = "secrets/google/token.json"
 
 _service = None
 
