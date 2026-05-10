@@ -32,6 +32,8 @@ node_modules/
 *.sqlite3
 *.db
 bradbot_memory.db
+bradbot/memory/*.db
+bradbot/memory/token.json
 .bradbot_session.json
 .claude/settings.local.json
 secrets/

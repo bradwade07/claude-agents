@@ -18,6 +18,8 @@ Personal Discord AI assistant using the Claude Agent SDK. Bradbot handles:
 - `bradbot/bot.py` — Discord bot entry point, APScheduler for morning briefing
 - `bradbot/tools/` — MCP tool servers (memory, clickup, calendar)
   - `memory.py` — SQLite-backed notes, grocery list, general recall
+- `bradbot/memory/` — SQLite DB and runtime state
+  - `memories.db` — persisted memory (gitignored)
   - `clickup.py` — ClickUp REST API wrapper (add_task, list_tasks, complete_task)
   - `calendar.py` — Google Calendar API (list_events, add_event)
 - `bradbot/sessions.py` — Persist session_id to `.bradbot_session.json` between restarts

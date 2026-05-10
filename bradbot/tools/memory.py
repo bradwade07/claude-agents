@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from claude_agent_sdk import tool, create_sdk_mcp_server
 
-DB_FILE = Path("bradbot_memory.db")
+DB_FILE = Path(__file__).parent.parent / "memory" / "memories.db"
 
 
 def init_db():
