@@ -1,0 +1,7 @@
+claude-agent-sdk
+discord.py
+apscheduler
+python-dotenv
+google-api-python-client
+google-auth-oauthlib
+httpx
