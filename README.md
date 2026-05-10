@@ -41,7 +41,7 @@ On first run, a browser window will open for Google Calendar OAuth2 approval. Af
 Built on the Claude Agent SDK (`claude-agent-sdk` Python package) — the same engine powering Claude Code.
 
 ```
-Discord DM → bradbot/bot.py (on_message)
+Discord channel msg → bradbot/bot.py (on_message, channel-scoped)
   ↓
 bradbot/agent.py (claude_agent_sdk.query)
   ↓
@@ -57,7 +57,7 @@ Response → Discord DM
 
 Session IDs are persisted to `.bradbot_session.json`, so bot remembers conversations even after restarts.
 
-## Commands (via Discord DM)
+## Commands (in configured Discord channel)
 
 Examples:
 

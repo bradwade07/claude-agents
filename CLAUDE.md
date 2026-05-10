@@ -23,7 +23,7 @@ Personal Discord AI assistant using the Claude Agent SDK. Bradbot handles:
 - `bradbot/sessions.py` — Persist session_id to `.bradbot_session.json` between restarts
 
 **Data Flow:**
-1. User DM in Discord → `on_message` handler
+1. Message in configured channel → `on_message` handler (filters by channel ID)
 2. Routes to `bradbot_chat(message)` in `agent.py`
 3. `query()` with `resume=session_id` continues conversation thread
 4. Claude Agent SDK loop calls MCP tools autonomously
@@ -56,7 +56,7 @@ python -m bradbot
 
 - `ANTHROPIC_API_KEY` — Claude API key
 - `BRADBOT_DISCORD_TOKEN` — Bot token from Discord Developer Portal
-- `DISCORD_USER_ID` — Your numeric Discord user ID
+- `BRADBOT_CHANNEL_ID` — Discord channel ID where bot listens + posts briefings
 - `CLICKUP_API_KEY` — ClickUp API token
 - `GOOGLE_CALENDAR_CREDENTIALS` — Path to Google OAuth2 credentials.json (default: `secrets/google/credentials.json`)
 
