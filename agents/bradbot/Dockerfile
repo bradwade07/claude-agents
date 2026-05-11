@@ -2,7 +2,7 @@ FROM claude-agents-base:latest
 
 COPY shared/ /app/shared/
 
-COPY bradbot/ /app/bradbot/
+COPY agents/bradbot/ /app/bradbot/
 
 ENV PYTHONUNBUFFERED=1
 

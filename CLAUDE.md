@@ -14,11 +14,11 @@ Personal Discord AI assistant using the Claude Agent SDK. Bradbot handles:
 ## Architecture
 
 **Key Components:**
-- `bradbot/agent.py` — Claude Agent SDK query wrapper, session management
-- `bradbot/bot.py` — Discord bot entry point, APScheduler for morning briefing
-- `bradbot/tools/` — MCP tool servers (memory, clickup, calendar)
+- `agents/bradbot/agent.py` — Claude Agent SDK query wrapper, session management
+- `agents/bradbot/bot.py` — Discord bot entry point, APScheduler for morning briefing
+- `agents/bradbot/tools/` — MCP tool servers (memory, clickup, calendar)
   - `memory.py` — thin wrapper, uses shared memory factory
-- `bradbot/memory/` — SQLite DB (private to Bradbot)
+- `agents/bradbot/memory/` — SQLite DB (private to Bradbot)
   - `bradbot.db` — private notes, cache, state (gitignored)
 - `shared/tools/memory.py` — two-tier memory factory
   - `build_memory_server(private_db)` → MCP server with 3 tools
@@ -29,7 +29,7 @@ Personal Discord AI assistant using the Claude Agent SDK. Bradbot handles:
   - `shared.db` — user prefs, grocery list, cross-agent data (gitignored)
   - `clickup.py` — ClickUp REST API wrapper (add_task, list_tasks, complete_task)
   - `calendar.py` — Google Calendar API (list_events, add_event)
-- `bradbot/sessions.py` — Persist session_id to `.bradbot_session.json` between restarts
+- `agents/bradbot/sessions.py` — Persist session_id to `.bradbot_session.json` between restarts
 
 **Data Flow:**
 1. Message in configured channel → `on_message` handler (filters by channel ID)
@@ -82,18 +82,18 @@ docker compose up -d
 
 **Architecture:** 
 - Shared base image `claude-agents-base:latest` (Python 3.14 + all deps)
-- One agent per container (Bradbot, ResearchBot, etc.)
+- One agent per container in `agents/` directory (Bradbot, ResearchBot, etc.)
 - Volumes:
   - `shared/memory/` → `/app/shared/memory` (all agents R/W)
-  - `bradbot/memory/` → `/app/bradbot/memory` (Bradbot R/W only)
+  - `agents/{agent}/memory/` → `/app/{agent}/memory` (agent R/W only)
   - `secrets/` → `/app/secrets` (read-only)
 
 **Memory tiers:**
-- **Private:** Bradbot writes to `bradbot.db` — only Bradbot reads/writes
-- **Shared:** Any agent can write to `shared.db` — all agents see it
+- **Private:** Agent writes to `agents/{agent}/memory/{agent}.db` — only that agent reads/writes
+- **Shared:** Any agent can write to `shared/memory/shared.db` — all agents see it
 - Tools: `remember` (private), `remember_shared` (shared), `recall` (both)
 
-**Scaling:** Add new agents by creating `newagent/Dockerfile` + service in `docker-compose.yml`. Copy 3-line `newagent/tools/memory.py` wrapper pointing to `newagent/memory/newagent.db`.
+**Scaling:** Add new agents in `agents/` directory. Create `agents/newagent/Dockerfile` + service in `docker-compose.yml`. Copy 3-line `agents/newagent/tools/memory.py` wrapper pointing to `agents/newagent/memory/newagent.db`.
 
 ## Environment Variables
 

@@ -10,14 +10,14 @@ services:
   bradbot:
     build:
       context: .
-      dockerfile: bradbot/Dockerfile
+      dockerfile: agents/bradbot/Dockerfile
     depends_on: [base]
     container_name: bradbot
     restart: always
     env_file: secrets/.env
     volumes:
       - ./shared/memory:/app/shared/memory
-      - ./bradbot/memory:/app/bradbot/memory
+      - ./agents/bradbot/memory:/app/bradbot/memory
       - ./secrets:/app/secrets:ro
     networks:
       - agents
