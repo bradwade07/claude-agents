@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  bradbot:
+    build:
+      context: .
+      dockerfile: bradbot/Dockerfile
+    container_name: bradbot
+    restart: always
+    env_file: secrets/.env
+    volumes:
+      - ./bradbot/memory:/app/bradbot/memory
+      - ./secrets:/app/secrets:ro
+    networks:
+      - agents
+
+networks:
+  agents:
+    driver: bridge

@@ -1,0 +1,15 @@
+.git
+.gitignore
+.venv
+__pycache__
+*.pyc
+*.db
+.bradbot_session.json
+.claude/
+.env
+README.md
+SETUP.md
+CLAUDE.md
+docker-compose.yml
+.dockerignore
+Dockerfile

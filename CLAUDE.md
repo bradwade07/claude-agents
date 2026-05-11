@@ -54,6 +54,28 @@ python -m bradbot
 # On first run, browser will open for OAuth2 approval
 ```
 
+### Docker (24/7 recommended)
+```bash
+# Build + run Bradbot
+docker compose up -d
+
+# View logs
+docker compose logs -f bradbot
+
+# Stop
+docker compose down
+
+# Rebuild after code changes
+docker compose build --no-cache
+docker compose up -d
+```
+
+**Architecture:** One agent per container. Volumes:
+- `bradbot/memory/` — SQLite DB persisted across restarts
+- `secrets/` — mounted read-only, env vars from `secrets/.env`
+
+**Scaling:** Add new agents by creating `newagent/Dockerfile` + service in `docker-compose.yml`.
+
 ## Environment Variables
 
 - `ANTHROPIC_API_KEY` — Claude API key
