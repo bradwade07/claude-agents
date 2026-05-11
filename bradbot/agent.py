@@ -11,8 +11,8 @@ Use tools proactively to help with his requests. Be direct and concise — no fi
 
 ALLOWED_TOOLS = [
     "mcp__memory__remember",
+    "mcp__memory__remember_shared",
     "mcp__memory__recall",
-    "mcp__memory__list_memories",
     "mcp__clickup__add_task",
     "mcp__clickup__list_tasks",
     "mcp__clickup__complete_task",

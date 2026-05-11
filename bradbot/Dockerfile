@@ -1,11 +1,8 @@
-FROM python:3.14-slim
+FROM claude-agents-base:latest
 
-WORKDIR /app
+COPY shared/ /app/shared/
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
+COPY bradbot/ /app/bradbot/
 
 ENV PYTHONUNBUFFERED=1
 

@@ -1,14 +1,22 @@
 version: '3.9'
 
 services:
+  base:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.base
+    image: claude-agents-base:latest
+
   bradbot:
     build:
       context: .
       dockerfile: bradbot/Dockerfile
+    depends_on: [base]
     container_name: bradbot
     restart: always
     env_file: secrets/.env
     volumes:
+      - ./shared/memory:/app/shared/memory
       - ./bradbot/memory:/app/bradbot/memory
       - ./secrets:/app/secrets:ro
     networks:
